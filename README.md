@@ -1,4 +1,4 @@
-# mob-mall
+# vue-mall
 
 > A Vue.js project
 
