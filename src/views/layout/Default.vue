@@ -20,6 +20,6 @@
 <style scoped>
   .content {
     max-width: 750px;
-    margin: 0 auto 120px;
+    margin: 0 auto 110px;
   }
 </style>

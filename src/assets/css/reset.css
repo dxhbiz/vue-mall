@@ -1,0 +1,247 @@
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+@-webkit-keyframes van-slide-bottom-enter {
+  from {
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+}
+
+@keyframes van-slide-bottom-enter {
+  from {
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+}
+
+@-webkit-keyframes van-slide-bottom-leave {
+  to {
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+}
+
+@keyframes van-slide-bottom-leave {
+  to {
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+  }
+}
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+caption,
+td,
+th {
+  vertical-align: middle;
+}
+
+html {
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption,
+td,
+th {
+  font-weight: 400;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+* {
+  box-sizing: content-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial,Helvetica,"STHeiti STXihei","Microsoft YaHei",Tohoma,sans-serif;
+  color: #333;
+  background-color: #f8f8f8;
+}
+
+a {
+  background: 0 0;
+  text-decoration: none;
+}
+
+a, a:hover, del, ins, s, u {
+  text-decoration: none;
+  outline: 0;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+button,
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+select,
+textarea {
+  font-family: inherit;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.swiper-pagination {
+  left: 0;
+  width: 100%;
+  bottom: 10px;
+  position: absolute;
+  text-align: center;
+  -webkit-transition: .3s;
+  transition: .3s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 10;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: 0.2;
+  margin: 0 5px;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;
+}

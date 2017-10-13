@@ -1,17 +1,26 @@
 <template>
   <div>
     <div class="banner">
-      <van-swipe auto-play>
-        <van-swipe-item v-for="(banner, index) in banners" :key="index">
-          <img :src="banner.image_url" alt="">
-        </van-swipe-item>
-      </van-swipe>
+      <swiper :options="bannerSwiperOption">
+        <swiper-slide class="banner-img" v-for="(banner, index) in banners" :key="index">
+          <img :src="banner.picUrl" alt="">
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
     </div>
-    <div class="menu">
-      <div class="menu-item" v-for="(channel, index) in channels" :key="index">
-        <img :src="channel.icon_url">
-        <span>{{channel.name}}</span>
-      </div>
+    <div class="cateMenu">
+      <swiper :options="menuSwiperOption">
+        <swiper-slide class="cateMenu-item" v-for="(cate, index) in cateList" :key="index">
+          <a href="javascript:;">
+            <div>
+              <img :src="cate.iconUrl">
+            </div>
+            <div>
+              <span>{{cate.name}}</span>
+            </div>
+          </a>
+        </swiper-slide>
+      </swiper>
     </div>
     <div class="brand">
       <div class="brand-title">
@@ -20,15 +29,15 @@
       </div>
       <div class="brand-container">
         <ul class="brand-list">
-          <li class="brand-item" v-for="(brand, index) in brands" :key="index">
+          <li class="brand-item" v-for="(tag, index) in tagList" :key="index">
             <div class="brand-cnt">
-              <h4 class="title">{{brand.name}}</h4>
+              <h4 class="title">{{tag.name}}</h4>
               <div>
-                <span class="price1">{{brand.floor_price}}</span>
+                <span class="price1">{{tag.floorPrice}}</span>
                 <span class="price1">元起</span>
               </div>
             </div>
-            <img :src="brand.new_pic_url">
+            <img :src="tag.picUrl">
           </li>
         </ul>
       </div>
@@ -45,14 +54,87 @@
       </div>
       <div class="newGoods-item">
         <swiper class="newGoods-swiper" :options="swiperOption">
-          <swiper-slide class="newGoods-slide" v-for="(goods, index) in newGoods" :key="index">
+          <swiper-slide class="newGoods-slide" v-for="(item, index) in newItemList" :key="index">
             <a class="good" href="javascript:;">
-              <div class="good-img"><img :src="goods.list_pic_url"></div>
-              <div class="good-name">{{goods.name}}</div>
-              <div class="good-price">¥{{goods.retail_price}}</div>
+              <div class="good-img"><img :src="item.listPicUrl"></div>
+              <div class="good-name">{{item.name}}</div>
+              <div class="good-price">¥{{item.retailPrice}}</div>
             </a>
           </swiper-slide>
         </swiper>
+      </div>
+    </div>
+    <div class="popularItem">
+      <div class="newGoods-hd popularItem-hd">
+        <div class="newGoods-txt popularItem-more">
+          <span>人气推荐 · 好物精选</span>
+          <div class="newGoods-all popularItem-all">
+            <span>查看全部</span>
+            <i class="arrow-right"></i>
+          </div>
+        </div>
+      </div>
+      <div class="newGoods-item">
+        <swiper class="newGoods-swiper" :options="swiperOption">
+          <swiper-slide class="newGoods-slide" v-for="(item, index) in popularItemList" :key="index">
+            <a class="good" href="javascript:;">
+              <div class="good-img"><img :src="item.listPicUrl"></div>
+              <div class="good-name">{{item.name}}</div>
+              <div class="good-price">¥{{item.retailPrice}}</div>
+            </a>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+    <div class="welfare">
+      <a class="welfare-more" href="javascript:;"></a>
+    </div>
+    <div class="brand">
+      <div class="brand-title">
+        <span>专题精选</span>
+        <i class="brand-icon"></i>
+      </div>
+      <div class="topics">
+        <swiper class="topics-swiper" :options="topicsSwiperOption">
+          <swiper-slide class="topics-slide" v-for="(topic, index) in topicList" :key="index">
+            <a class="topics-slide-item" href="javascript:;">
+              <div class="topics-slide-img">
+                <img :src="topic.itemPicUrl">
+              </div>
+              <div class="topics-hd">
+                <h4 class="topics-title">{{topic.title}}</h4>
+                <span class="topics-price">
+                  <span>{{topic.priceInfo}}</span>
+                  <span>元起</span>
+                </span>
+              </div>
+              <div class="topics-desc">
+                {{topic.subtitle}}
+              </div>
+            </a>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+    <div class="cate" v-for="(cate, index) in cateList" :key="index">
+      <div class="cate-grid">
+        <h3 class="title">{{cate.name}}好物</h3>
+        <div class="cate-goods">
+          <ul class="list">
+            <li class="item" v-for="(item, idx) in cate.itemList" :key="idx">
+              <a class="good" href="javascript:;">
+                <div class="hd">
+                  <div class="wraper">
+                    <img :src="item.listPicUrl">
+                  </div>
+                  <div class="desc">{{item.simpleDesc}}</div>
+                </div>
+                <div class="name">{{item.name}}</div>
+                <div class="price">¥{{item.retailPrice}}</div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -60,8 +142,8 @@
 
 <script>
   import * as types from '../../vuex/mutation-types'
-  import api from '../../api/index'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import model from './HomeModel'
 
   export default {
     components: {
@@ -70,27 +152,43 @@
     },
     data () {
       return {
-        banners: [],
-        channels: [],
-        brands: [],
-        newGoods: [],
+        cateList: [],
+        tagList: [],
+        newItemList: [],
+        popularItemList: [],
+        topicList: [],
+        bannerSwiperOption: {
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          setWrapperSize: true,
+          autoplay: 3000,
+          updateOnImagesReady: true
+        },
+        menuSwiperOption: {
+          slidesPerView: 5,
+          spaceBetween: 10,
+          setWrapperSize: true
+        },
         swiperOption: {
           slidesPerView: 2.5,
           spaceBetween: 10,
+          setWrapperSize: true
+        },
+        topicsSwiperOption: {
+          slidesPerView: 1.2,
+          spaceBetween: 20,
           setWrapperSize: true
         }
       }
     },
     async created () {
       this.$store.commit(types.CLICK_FOOT_ICON, 0)
-      const rst = await api.getHomeInfo()
-      if (rst.errno === 0) {
-        this.banners = rst.data.banner
-        this.channels = rst.data.channel
-        this.brands = rst.data.brandList
-        this.newGoods = rst.data.newGoodsList
-      }
-      console.log(this.newGoods)
+      this.banners = model.focusList
+      this.tagList = model.tagList
+      this.newItemList = model.newItemList
+      this.popularItemList = model.popularItemList
+      this.topicList = model.topicList
+      this.cateList = model.cateList
     },
     methods: {
     }
@@ -99,35 +197,36 @@
 
 <style scoped>
   .banner {
-    height: 360px;
-  }
-  .menu {
-    display: flex;
     width: 100%;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
+    height: 360px;
+    overflow: hidden;
+    position: relative;
   }
-  .menu-item {
-    flex: 1;
-    display: block;
-    padding: 20px 0;
+  .banner-img {
+    float:left;
   }
-  .menu-item img {
-    display: block;
-    width: 58px;
-    height: 58px;
-    margin: 0 auto;
-    margin-bottom: 10px;
+  .banner-img img {
+    width: 750px;
+    height: 400px;
   }
-  .menu span {
-    display: block;
-    font-size: 24px;
+  .cateMenu {
+    height: 90px;
+    overflow: hidden;
+    margin: 20px 0;
     text-align: center;
-    margin: 0 auto;
-    line-height: 24px;
+  }
+  .cateMenu-item {
+    float: left;
+    display: block;
+  }
+  .cateMenu-item img {
+    width: 54px;
+    height: 54px;
+  }
+  .cateMenu-item span {
     color: #333;
+    font-size: 24px;
+    line-height: 28px;
   }
   .brand {
     color: #333;
@@ -178,7 +277,7 @@
     overflow: hidden;
     background-color: #f4f4f4;
   }
-  .brand-item:nth-child(odd)
+  .brand-item:nth-child(2n+1)
   {
     margin-right: 8px;
   }
@@ -300,5 +399,181 @@
     line-height: 28px;
     text-align: left;
     color: #b4282d;
+  }
+  .popularItem {
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  .popularItem-hd {
+    background: url(../../assets/images/rqtj.png);
+  }
+  .popularItem-more {
+    color: #B4A078;
+  }
+  .popularItem-all {
+    background: #F4E9CB;
+  }
+  .welfare {
+    width: 750px;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+  .welfare-more {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url(../../assets/images/yxfl.png);
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .topics {
+    padding: 0 30px 36px;
+    overflow: hidden;
+  }
+  .topics-swiper {
+
+  }
+  .topics-slide {
+    float: left;
+    width: 575px;
+  }
+  .topics-slide-item {
+    display: block;
+  }
+  .topics-slide-img {
+    width:  575px;
+    height: 322px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .topics-slide-img img {
+    height: 100%;
+    width: auto;
+    position: relative;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  .topics-hd {
+    height: 41px;
+    margin-bottom: 2px;
+    zoom: 1;
+    text-decoration: none;
+    outline: 0;
+  }
+  .topics-title {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    width: 410px;
+    float: left;
+    font-size: 28px;
+    color: #333;
+  }
+  .topics-price {
+    float: right;
+    font-size: 28px;
+    color: #b4282d;
+  }
+  .topics-desc {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    width: 575px;
+    font-size: 24px;
+    color: #7F7F7F;
+  }
+  .cate {
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  .cate-grid {
+    background-color: #f4f4f4;
+  }
+  .cate-grid .title {
+    line-height: 120px;
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    background-color: #fff;
+  }
+  .cate-goods {
+    background-color: #fff;
+  }
+  .cate-goods .list {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .cate-goods .list .item {
+    float: left;
+    position: relative;
+    width: 345px;
+    padding: 0 10px 33px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .cate-goods .list .item:nth-child(2n+1) {
+    padding: 0 10px 33px 20px;
+  }
+  .cate-goods .list .item .good {
+    width: 100%;
+  }
+  .cate-goods .list .item .hd {
+    border-radius: 4px;
+    position: relative;
+    z-index: 0;
+    background-color: #f4f4f4;
+  }
+  .cate-goods .list .item .good .wraper {
+  }
+  .cate-goods .list .item .hd img{
+    display: block;
+    width: 100%;
+    height: 345px;
+    border-radius: 4px 4px 0 0;
+    background-color: #f4f4f4;
+  }
+  .cate-goods .list .item .hd .desc{
+    background: #F1ECE2;
+    border-radius: 0 0 4px 4px;
+    font-size: 24px;
+    color: #9F8A60;
+    letter-spacing: 0;
+    line-height: 29px;
+    padding: 20px 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .cate-goods .list .item .name {
+    margin: 20px auto 10px;
+    padding: 0 10px;
+    line-height: 1;
+    text-align: left;
+    font-size: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #333;
+  }
+  .cate-goods .list .item .price {
+    line-height: 1;
+    font-size: 33px;
+    text-align: left;
+    color: #b4282d;
+    padding: 0 10px;
   }
 </style>
