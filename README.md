@@ -1,8 +1,14 @@
-# vue-mall
+# 移动端商城
 
-> A Vue.js project
+> 仿网易严选商城
 
-## Build Setup
+## 项目截图
+
+### 首页预览
+
+![image](https://github.com/dxhbiz/vue-mall/raw/master/screenshots/home.png)
+
+## 打包步骤
 
 ``` bash
 # install dependencies

@@ -1,7 +1,7 @@
 {
-  "name": "mob-mall",
+  "name": "vue-mall",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "仿网易严选商城移动版",
   "author": "2013-20161210PW\\Administrator <281419087@qq.com>",
   "private": true,
   "scripts": {
