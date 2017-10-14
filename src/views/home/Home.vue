@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="banner">
-      <swiper :options="bannerSwiperOption">
+      <swiper class="banner-swiper" :options="bannerSwiperOption">
         <swiper-slide class="banner-img" v-for="(banner, index) in banners" :key="index">
-          <img :src="banner.picUrl" alt="">
+          <img v-lazy="banner.picUrl" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -13,7 +13,7 @@
         <swiper-slide class="cateMenu-item" v-for="(cate, index) in cateList" :key="index">
           <a href="javascript:;">
             <div>
-              <img :src="cate.iconUrl">
+              <img v-lazy="cate.iconUrl">
             </div>
             <div>
               <span>{{cate.name}}</span>
@@ -37,7 +37,7 @@
                 <span class="price1">元起</span>
               </div>
             </div>
-            <img :src="tag.picUrl">
+            <img v-lazy="tag.picUrl">
           </li>
         </ul>
       </div>
@@ -56,7 +56,7 @@
         <swiper class="newGoods-swiper" :options="swiperOption">
           <swiper-slide class="newGoods-slide" v-for="(item, index) in newItemList" :key="index">
             <a class="good" href="javascript:;">
-              <div class="good-img"><img :src="item.listPicUrl"></div>
+              <div class="good-img"><img v-lazy="item.listPicUrl"></div>
               <div class="good-name">{{item.name}}</div>
               <div class="good-price">¥{{item.retailPrice}}</div>
             </a>
@@ -78,7 +78,7 @@
         <swiper class="newGoods-swiper" :options="swiperOption">
           <swiper-slide class="newGoods-slide" v-for="(item, index) in popularItemList" :key="index">
             <a class="good" href="javascript:;">
-              <div class="good-img"><img :src="item.listPicUrl"></div>
+              <div class="good-img"><img v-lazy="item.listPicUrl"></div>
               <div class="good-name">{{item.name}}</div>
               <div class="good-price">¥{{item.retailPrice}}</div>
             </a>
@@ -99,7 +99,7 @@
           <swiper-slide class="topics-slide" v-for="(topic, index) in topicList" :key="index">
             <a class="topics-slide-item" href="javascript:;">
               <div class="topics-slide-img">
-                <img :src="topic.itemPicUrl">
+                <img v-lazy="topic.itemPicUrl">
               </div>
               <div class="topics-hd">
                 <h4 class="topics-title">{{topic.title}}</h4>
@@ -125,7 +125,7 @@
               <a class="good" href="javascript:;">
                 <div class="hd">
                   <div class="wraper">
-                    <img :src="item.listPicUrl">
+                    <img v-lazy="item.listPicUrl">
                   </div>
                   <div class="desc">{{item.simpleDesc}}</div>
                 </div>
@@ -142,14 +142,9 @@
 
 <script>
   import * as types from '../../vuex/mutation-types'
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import model from './HomeModel'
 
   export default {
-    components: {
-      swiper,
-      swiperSlide
-    },
     data () {
       return {
         cateList: [],
@@ -162,7 +157,8 @@
           paginationClickable: true,
           setWrapperSize: true,
           autoplay: 3000,
-          updateOnImagesReady: true
+          updateOnImagesReady: true,
+          autoplayDisableOnInteraction: false
         },
         menuSwiperOption: {
           slidesPerView: 5,
@@ -198,16 +194,14 @@
 <style scoped>
   .banner {
     width: 100%;
-    height: 360px;
     overflow: hidden;
-    position: relative;
   }
-  .banner-img {
-    float:left;
+  .banner-swiper {
+    height: 360px;
   }
   .banner-img img {
     width: 750px;
-    height: 400px;
+    height: 360px;
   }
   .cateMenu {
     height: 90px;
@@ -383,7 +377,7 @@
     height: 100%;
   }
   .good-name {
-    margin-bottom: 10px;
+    margin: 15px 0;
     padding: 0 10px;
     font-size: 28px;
     line-height: 28px;
