@@ -21,5 +21,6 @@
   .content {
     max-width: 750px;
     margin: 0 auto 110px;
+    background-color: #f4f4f4;
   }
 </style>

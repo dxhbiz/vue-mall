@@ -8,6 +8,10 @@
 
 ![image](https://github.com/dxhbiz/vue-mall/raw/master/screenshots/home.png)
 
+### 专题预览
+ 
+![image](https://github.com/dxhbiz/vue-mall/raw/master/screenshots/topic.png)
+
 ## 打包步骤
 
 ``` bash

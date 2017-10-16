@@ -53,6 +53,7 @@ const AppRouter = new Router({
 
 // const whiteRouterList = ['/login']
 AppRouter.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
   next()
 })
 

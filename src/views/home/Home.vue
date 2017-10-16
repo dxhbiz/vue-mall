@@ -178,6 +178,7 @@
       }
     },
     async created () {
+      document.title = '移动端商城--首页'
       this.$store.commit(types.CLICK_FOOT_ICON, 0)
       this.banners = model.focusList
       this.tagList = model.tagList
@@ -204,12 +205,14 @@
     height: 360px;
   }
   .cateMenu {
-    height: 90px;
+    background-color: #fff;
+    height: 100px;
     overflow: hidden;
     margin: 20px 0;
     text-align: center;
   }
   .cateMenu-item {
+    margin-top: 8px;
     float: left;
     display: block;
   }
@@ -224,6 +227,7 @@
   }
   .brand {
     color: #333;
+    background-color: #fff;
   }
   .brand-title {
     font-size: 32px;
@@ -269,7 +273,6 @@
     width: 355px;
     height: 236px;
     overflow: hidden;
-    background-color: #f4f4f4;
   }
   .brand-item:nth-child(2n+1)
   {
@@ -284,6 +287,7 @@
     z-index: 4;
   }
   .brand-item img {
+    background-color: #f4f4f4;
     width: 355px;
     height: 236px;
   }
