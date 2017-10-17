@@ -170,7 +170,7 @@
         </div>
       </a>
     </div>
-    <i class="gotoTop" v-if="gotoTop"></i>
+    <i class="gotoTop" v-if="gotoTop" @click="goToTop"></i>
     <div class="exploreMore">
       <div class="line-title">
         <div class="inner">更多精彩</div>
@@ -240,6 +240,9 @@
         } else {
           this.gotoTop = false
         }
+      },
+      goToTop () {
+        window.scrollTo(0, 0)
       }
     }
   }
@@ -671,8 +674,8 @@
   }
   .exploreMore .topicItem .pic1 {
     float: left;
-    width: 460px;
-    height: 360px;
+    width: 459px;
+    height: 350px;
     margin-right: 4px;
     background-size: cover;
     -webkit-background-size: cover;

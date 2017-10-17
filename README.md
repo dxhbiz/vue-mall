@@ -12,6 +12,10 @@
  
 ![image](https://github.com/dxhbiz/vue-mall/raw/master/screenshots/topic.png)
 
+### 个人中心预览
+ 
+![image](https://github.com/dxhbiz/vue-mall/raw/master/screenshots/me.png)
+
 ## 打包步骤
 
 ``` bash
