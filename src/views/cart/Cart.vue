@@ -166,6 +166,7 @@
     vertical-align: middle;
     background-image: url(../../assets/images/dian.png);
     background-repeat: no-repeat;
+    background-size: 10px 10px;
     width: 10px;
     height: 10px;
   }

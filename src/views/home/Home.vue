@@ -518,7 +518,7 @@
   .cate-goods .list .item {
     float: left;
     position: relative;
-    width: 345px;
+    width: 370px;
     padding: 0 10px 33px;
     overflow: hidden;
     background-color: #fff;
